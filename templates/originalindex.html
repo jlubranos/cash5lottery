@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>NJ Cash 5 Picker</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <img src="../static/jersey-cash-5.svg" alt="Cash 5 Logo" width="300" height="200"> 
+        <span class="span-1">Hello There</span>   
+        <div class="combobox">
+            <div class="cash5box" id="conefirst">
+                <h1>C</h1>
+            </div>
+            <div class="cash5box" id="conesecond">
+                <h1>L</h1>
+            </div>
+            <div class="cash5box" id="conethird">
+                <h1>I</h1>
+            </div>
+            <div class="cash5box" id="conefourth">
+                <h1>C</h1>
+            </div>
+            <div class="cash5box" id="conefifth">
+                <h1>K</h1>
+            </div>
+        </div>
+        <div class="combobox">
+            <div class="cash5box" id="ctwofirst">
+                <h1>B</h1>
+            </div>
+            <div class="cash5box" id="ctwosecond">
+                <h1>E</h1>
+            </div>
+            <div class="cash5box" id="ctwothird">
+                <h1>L</h1>
+            </div>
+            <div class="cash5box" id="ctwofourth">
+                <h1>O</h1>
+            </div>
+            <div class="cash5box" id="ctwofifth">
+                <h1>W</h1>
+            </div>
+        </div>
+        <div class="combobox">                              
+            <div class="cash5box" id="cthreefirst">
+                <h1></h1>
+            </div>
+            <div class="cash5box" id="cthreesecond">
+                <h1>A</h1>
+            </div>
+            <div class="cash5box" id="cthreethird">
+                <h1>N</h1>
+            </div>
+            <div class="cash5box" id="cthreefourth">
+                <h1>D</h1>
+            </div>
+            <div class="cash5box" id="cthreefifth">
+                <h1></h1>
+            </div>
+        </div>
+        <div class="combobox">                                
+            <div class="cash5box" id="cfourfirst">
+                <h1></h1>
+            </div>
+            <div class="cash5box" id="cfoursecond">
+                <h1>W</h1>
+            </div>
+            <div class="cash5box" id="cfourthird">
+                <h1>I</h1>
+            </div>
+            <div class="cash5box" id="cfourfourth">
+                <h1>N</h1>
+            </div>
+            <div class="cash5box" id="cfourfifth">
+                <h1></h1>
+            </div>
+        </div>
+        <div class="combobox">
+            <div class="cash5box" id="cfivefirst">
+                <h1></h1>
+            </div>
+            <div class="cash5box" id="cfivesecond">
+                <h1>B</h1>
+            </div>
+            <div class="cash5box" id="cfivethird">
+                <h1>I</h1>
+            </div>
+            <div class="cash5box" id="cfivefourth">
+                <h1>G</h1>
+            </div>
+            <div class="cash5box" id="cfivefifth">
+                <h1></h1>
+            </div>
+        </div>
+        <div class="center">
+            <button class="btn btn-primary" onclick="getNumbers()">Get Numbers</button>
+            <button class="btn btn-primary" onclick="saveNumbers(this)">Save Picks</button>
+        </div>
+    </div>
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="../static/index.js"></script>        
+</body>
+</html>

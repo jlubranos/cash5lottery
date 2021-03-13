@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>NJ Cash 5 Picker</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <img src="../static/jersey-cash-5.svg" alt="Cash 5 Logo" width="300" height="150">
+        <div class="row">
+            <div class="column">
+                <br><br>
+                <span class="span-1">Top 5 most frequent numbers picked</span>   
+                <div class="combobox">
+                    <div class="cash5box" id="conefirst">
+                        <h1>C</h1>
+                    </div>
+                    <div class="cash5box" id="conesecond">
+                        <h1>L</h1>
+                    </div>
+                    <div class="cash5box" id="conethird">
+                        <h1>I</h1>
+                    </div>
+                    <div class="cash5box" id="conefourth">
+                        <h1>C</h1>
+                    </div>
+                    <div class="cash5box" id="conefifth">
+                        <h1>K</h1>
+                    </div>
+                </div>
+                <span class="span-1">Top 5 most frequent in position</span>   
+                <div class="combobox">
+                    <div class="cash5box" id="ctwofirst">
+                        <h1>B</h1>
+                    </div>
+                    <div class="cash5box" id="ctwosecond">
+                        <h1>E</h1>
+                    </div>
+                    <div class="cash5box" id="ctwothird">
+                        <h1>L</h1>
+                    </div>
+                    <div class="cash5box" id="ctwofourth">
+                        <h1>O</h1>
+                    </div>
+                    <div class="cash5box" id="ctwofifth">
+                        <h1>W</h1>
+                    </div>
+                </div>
+                <span class="span-1">Top 5 most frequent in position with top odd/even pattern</span>   
+                <div class="combobox">                              
+                    <div class="cash5box" id="cthreefirst">
+                        <h1></h1>
+                    </div>
+                    <div class="cash5box" id="cthreesecond">
+                        <h1>A</h1>
+                    </div>
+                    <div class="cash5box" id="cthreethird">
+                        <h1>N</h1>
+                    </div>
+                    <div class="cash5box" id="cthreefourth">
+                        <h1>D</h1>
+                    </div>
+                    <div class="cash5box" id="cthreefifth">
+                        <h1></h1>
+                    </div>
+                </div>
+                <span class="span-1">Random numbers with odd-low/even-high pattern</span>   
+                <div class="combobox">                                
+                    <div class="cash5box" id="cfourfirst">
+                        <h1></h1>
+                    </div>
+                    <div class="cash5box" id="cfoursecond">
+                        <h1>W</h1>
+                    </div>
+                    <div class="cash5box" id="cfourthird">
+                        <h1>I</h1>
+                    </div>
+                    <div class="cash5box" id="cfourfourth">
+                        <h1>N</h1>
+                    </div>
+                    <div class="cash5box" id="cfourfifth">
+                        <h1></h1>
+                    </div>
+                </div>
+                <span class="span-1">Random numbers with odd-high/even-low pattern</span>   
+                <div class="combobox">
+                    <div class="cash5box" id="cfivefirst">
+                        <h1></h1>
+                    </div>
+                    <div class="cash5box" id="cfivesecond">
+                        <h1>B</h1>
+                    </div>
+                    <div class="cash5box" id="cfivethird">
+                        <h1>I</h1>
+                    </div>
+                    <div class="cash5box" id="cfivefourth">
+                        <h1>G</h1>
+                    </div>
+                    <div class="cash5box" id="cfivefifth">
+                        <h1></h1>
+                    </div>
+                </div>
+            </div>
+            <div class='column'>
+                <h1 style="color:yellow;">Estimated Jackpot</h1>
+                <h1 id="jackpot;" style="color:white;">{{est_jackpot}}</h1>
+                <br>
+                <span class="span-1">Yesterday's winning numbers</span>
+                <div class="circle">{{winning_numbers[0]}}</div>
+                <div class="circle">{{winning_numbers[1]}}</div>
+                <div class="circle">{{winning_numbers[2]}}</div>
+                <div class="circle">{{winning_numbers[3]}}</div>
+                <div class="circle">{{winning_numbers[4]}}</div>
+                <br><br>
+                <iframe class="frame" id="frameid" src = "{{url_for('analyze')}}"></iframe>
+            </div>
+            <div class="column">
+                <span class="span-1">Method: Each position with most frequent odd-low, odd-high, even-low, or even-high pattern</span>   
+                <span class="span-1">Random selection one</span>   
+                <div class="combobox">
+                    <div class="cash5box" id="ronefirst">
+                        <h1>C</h1>
+                    </div>
+                    <div class="cash5box" id="ronesecond">
+                        <h1>L</h1>
+                    </div>
+                    <div class="cash5box" id="ronethird">
+                        <h1>I</h1>
+                    </div>
+                    <div class="cash5box" id="ronefourth">
+                        <h1>C</h1>
+                    </div>
+                    <div class="cash5box" id="ronefifth">
+                        <h1>K</h1>
+                    </div>
+                </div>
+                <span class="span-1">Random selection two</span>   
+                <div class="combobox">
+                    <div class="cash5box" id="rtwofirst">
+                        <h1>B</h1>
+                    </div>
+                    <div class="cash5box" id="rtwosecond">
+                        <h1>E</h1>
+                    </div>
+                    <div class="cash5box" id="rtwothird">
+                        <h1>L</h1>
+                    </div>
+                    <div class="cash5box" id="rtwofourth">
+                        <h1>O</h1>
+                    </div>
+                    <div class="cash5box" id="rtwofifth">
+                        <h1>W</h1>
+                    </div>
+                </div>
+                <span class="span-1">Random selection three</span>   
+                <div class="combobox">                              
+                    <div class="cash5box" id="rthreefirst">
+                        <h1></h1>
+                    </div>
+                    <div class="cash5box" id="rthreesecond">
+                        <h1>A</h1>
+                    </div>
+                    <div class="cash5box" id="rthreethird">
+                        <h1>N</h1>
+                    </div>
+                    <div class="cash5box" id="rthreefourth">
+                        <h1>D</h1>
+                    </div>
+                    <div class="cash5box" id="rthreefifth">
+                        <h1></h1>
+                    </div>
+                </div>
+                <span class="span-1">Random selection four</span>   
+                <div class="combobox">                                
+                    <div class="cash5box" id="rfourfirst">
+                        <h1></h1>
+                    </div>
+                    <div class="cash5box" id="rfoursecond">
+                        <h1>W</h1>
+                    </div>
+                    <div class="cash5box" id="rfourthird">
+                        <h1>I</h1>
+                    </div>
+                    <div class="cash5box" id="rfourfourth">
+                        <h1>N</h1>
+                    </div>
+                    <div class="cash5box" id="rfourfifth">
+                        <h1></h1>
+                    </div>
+                </div>
+                <span class="span-1">Random selection five</span>   
+                <div class="combobox">
+                    <div class="cash5box" id="rfivefirst">
+                        <h1></h1>
+                    </div>
+                    <div class="cash5box" id="rfivesecond">
+                        <h1>B</h1>
+                    </div>
+                    <div class="cash5box" id="rfivethird">
+                        <h1>I</h1>
+                    </div>
+                    <div class="cash5box" id="rfivefourth">
+                        <h1>G</h1>
+                    </div>
+                    <div class="cash5box" id="rfivefifth">
+                        <h1></h1>
+                    </div>
+                </div>
+            </div>                
+        </div>
+
+        <div class="center">
+            <button class="btn btn-primary" onclick="getNumbers()">Get Numbers</button>
+            <button class="btn btn-primary" onclick="saveNumbers(this)">Save Picks</button>
+            <button class="btn btn-primary" onclick="analyzeNumber()">Analyze All Picks</button>
+        </div>
+    </div>
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="../static/index.js"></script>
+</body>
+</html>
