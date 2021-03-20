@@ -333,14 +333,16 @@ function saveNumbers() {
         pick5['num4'] = $(this).find("#rfivefourth").children().text();
         pick5['num5'] = $(this).find("#rfivefifth").children().text();
         results.push(pick5);
-
-        console.log("Results :",results);
-
         results = JSON.stringify(results);
-        console.log(results);
-
         d3.json(`/cash5/savenumbers/${results}`).then((response)=>{
-            console.log("Response :",response);
+            console.log("result :",response);
+            if (response=='Unsuccessful')
+                {
+                alert("Numbers already saved for today.");
+                }
+            else {
+                alert("Numbers Saved");
+                }
         });
     });
 }
@@ -348,33 +350,103 @@ function saveNumbers() {
 function analyzeNumber() {
     var i;
     var predstring;
-    var predictions=[];
-    console.log("Current window location :", window.location.pathname);
-    $.get('/analyze', null, function(picklist){
-        var pick = $(picklist).find('#picks');
-        console.log("Picklist :",picklist);
-        console.log("Pick :",pick);
-/*    window.location.pathname='/analyze'
-    console.log("New Window Location :",window.location.pathname) */
-        d3.json(`/cash5/analyzeNumbers`).then((response)=>{
-            console.log("Response Length :",response.length)
-            for (i=0;i<response.length;i++) {
-                var date=response[i][0];
-                var num1=response[i][1];
-                var num2=response[i][2];
-                var num3=response[i][3];
-                var num4=response[i][4];
-                var num5=response[i][5];
-/*                console.log("Date :", response[i][0], "Picked Numbers :", response[i][1],
-                                response[i][2], response[i][3],
-                                response[i][4], response[i][5]);*/
-                predstring="";
-                predstring= date.concat('  ',num1,',',num2,',',num3,',',num4,',',num5);
-                predictions.push(predstring);
+    iframe=document.getElementById("frameid");
+    let iframeWindow = iframe.contentWindow;
+    let doc = iframe.contentDocument;
+    pick=doc.getElementById("picks");
+    d3.json(`/cash5/analyzeNumbers`).then((response)=>{
+        for (i=0;i<response.length;i++) {
+            var datelist=response[i][0].split(" ");
+            var date=datelist[2].concat(' ',datelist[1],' ,',datelist[3]);
+            var num1=response[i][1];
+            var num2=response[i][2];
+            var num3=response[i][3];
+            var num4=response[i][4];
+            var num5=response[i][5];
+            predstring="";
+            predstring= date.concat(' - ',num1,',',num2,',',num3,',',num4,',',num5);
+            pick.append(new Option(predstring,String(i+1)));
+        }
+    });
+}
+
+function getSelected() {
+
+    var oneoffive=0;
+    var twooffive=0;
+    var threeoffive=0;
+    var fouroffive=0;
+    var fiveoffive=0;
+    var pick=document.getElementById("picks");
+    var selected = pick.options[pick.selectedIndex].text;
+    var wtable=document.getElementById("wnumbers");
+    var selectedlist=selected.split(' - ');
+    var pnumlist = selectedlist[1].split(',');
+    d3.json(`/cash5/winningNumbers`).then((response)=>{
+        for (i=0;i<response.length;i++) {
+            var count=0;
+            var row = wtable.insertRow(i+1);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var num1 = row.insertCell(2);
+            var num2 = row.insertCell(3);
+            var num3 = row.insertCell(4);
+            var num4 = row.insertCell(5);
+            var num5 = row.insertCell(6);
+            var datelist1 = response[i][0].split(",");
+            var day = datelist1[0];
+            datelist2 = datelist1[1].split(" ");
+            date = datelist2[2].concat(" ",datelist2[1],' ,',datelist2[3]);
+            cell1.innerHTML=day;
+            cell1.style.color="yellow";
+            cell2.innerHTML=date;
+            cell2.style.color="#cc00cc";
+            num1.innerHTML=response[i][1];
+            if (pnumlist[0]==response[i][1]) {
+                count+=1;
+                num1.style.color="red";
             }
-            for (i=0;i<predictions.length;i++) {
-                pick.append(new Option(pick[i],predictions[i]));
+            num2.innerHTML=response[i][2];
+            if (pnumlist[1]==response[i][2]) {
+                count+=1;
+                num2.style.color="red";
             }
-        });
+            num3.innerHTML=response[i][3];
+            if (pnumlist[2]==response[i][3]) {
+                count+=1;
+                num3.style.color="red"
+            }
+            num4.innerHTML=response[i][4];
+            if (pnumlist[3]==response[i][4]) {
+                count+=1;
+                num4.style.color="red"
+            }
+            num5.innerHTML=response[i][5];
+            if (pnumlist[4]==response[i][5]) {
+                count+=1;
+                num5.style.color="red"
+            }
+            switch (count) {
+                case 1:
+                  oneoffive+=1;
+                  break;
+                case 2:
+                  twooffive+=1;
+                  break;
+                case 3:
+                   threeoffive+=1;
+                  break;
+                case 4:
+                  fouroffive+=1;
+                  break;
+                case 5:
+                  fiveoffive+=1;
+                  break;
+            }
+        }
+        var results="Winning Numbers".concat(" (1/5:",oneoffive,")   (2/5:",twooffive,
+                        ")   (3/5:",threeoffive,")   (4/5:",fouroffive,")   (5/5:",fiveoffive,
+                        ")     Total Draws:",response.length);
+        document.getElementById('results').innerHTML=results;
     });
 }

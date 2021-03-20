@@ -464,28 +464,5 @@ def savenumbers(results):
     session.close()
     return jsonify(status)
 
-@app.route("/cash5/analyzeNumbers/", methods = ['GET','POST'])
-def analyzeNumbers():
-    session = Session(bind=engine)
-    predicted_df=[]
-    predicted_df = pd.read_sql_query('SELECT * from "picks_suggested" ORDER BY "suggested_date" DESC',con=engine)
-    predicted_df = predicted_df.drop(columns=['suggested_id','method_name'])
-    predicted_list = predicted_df.values.tolist()
-    session.close()
-    return jsonify(predicted_list)
-
-@app.route("/cash5/winningNumbers/", methods = ['GET','POST'])
-def winningNumbers():
-    session = Session(bind=engine)
-    winning_df=[]
-    winning_df = pd.read_sql_query('SELECT * from "numbers" ORDER BY "pick_date" DESC', con=engine)
-    winning_list = winning_df.values.tolist()
-    session.close()
-    return jsonify(winning_list)
-
-@app.route('/analyze')
-def analyze():
-    return render_template('analyze.html')
-
 if __name__=="__main__":
     app.run(debug=True)    

@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang='en'>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -6,11 +7,19 @@
     </head>
     <body>
         <label for="numbers">Choose predicted pick:</label>
-        <select name="numbers" id="picks">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
+        <select name="numbers" id="picks" onchange="getSelected()">
+            <option value="0">Pick a predicted number</option>
         </select>
+        <hr size="1" color="yellow">
+        <h5 id="results">Winning Numbers</h5>
+        <hr size="1" color="yellow">
+        <table id="wnumbers">
+            <tr>
+            </tr>
+        </table>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../static/index.js"></script>
     </body>
 </html>

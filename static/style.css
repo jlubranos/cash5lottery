@@ -53,6 +53,10 @@ h1, .h1 {
     text-align:center;
 }
 
+h5, .h5 {
+    margin:0px;
+}
+
 .combobox {
     display:inline-flex; /* new */
     margin-top:0px;
@@ -96,4 +100,25 @@ h1, .h1 {
 
 body {
     color:white;
+}
+
+table {
+    overflow-y: scroll;
+    height:150px;
+    display:block;
+}
+
+th {
+    padding-right:10px;
+    text-align:left;
+}
+
+td {
+    padding-right:10px;
+    text-align:left;
+}
+
+#wnumbers {
+    font-size:x-large;
+    overflow:auto;
 }
