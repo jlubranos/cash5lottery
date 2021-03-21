@@ -402,29 +402,33 @@ function getSelected() {
             cell2.innerHTML=date;
             cell2.style.color="#cc00cc";
             num1.innerHTML=response[i][1];
-            if (pnumlist[0]==response[i][1]) {
-                count+=1;
-                num1.style.color="red";
-            }
             num2.innerHTML=response[i][2];
-            if (pnumlist[1]==response[i][2]) {
-                count+=1;
-                num2.style.color="red";
-            }
             num3.innerHTML=response[i][3];
-            if (pnumlist[2]==response[i][3]) {
-                count+=1;
-                num3.style.color="red"
-            }
             num4.innerHTML=response[i][4];
-            if (pnumlist[3]==response[i][4]) {
-                count+=1;
-                num4.style.color="red"
-            }
             num5.innerHTML=response[i][5];
-            if (pnumlist[4]==response[i][5]) {
-                count+=1;
-                num5.style.color="red"
+            for (x=0;x<5;x++) {
+                for (y=0;y<5;y++) {
+                    if (pnumlist[x]==response[i][y+1]) {
+                        count+=1;
+                        switch(y+1) {
+                            case 1:
+                                num1.style.color="red";
+                                break;
+                            case 2:
+                                num2.style.color="red";
+                                break;
+                            case 3:
+                                num3.style.color="red";
+                                break;
+                            case 4:
+                                num4.style.color="red";
+                                break;
+                            case 5:
+                                num5.style.color="red";
+                                break;
+                        }
+                    }
+                }
             }
             switch (count) {
                 case 1:
